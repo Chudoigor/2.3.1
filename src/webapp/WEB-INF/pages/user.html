@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+</head>
+<body>
+<div>
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Имя</th>
+      <th>Фамилия</th>
+      <th>Дата рождения</th>
+      <th>Действие</th>
+    </tr>
+    <tr>
+      <form th:action="@{/users/{id}(id=${user.id})}" th:method="put" th:object="${user}">
+        <td th:text="*{id}">
+          <input type="hidden" th:value="*{id}">
+        </td>
+        <td>
+          <input type="text" name="firstName" th:value="*{firstName}">
+        </td>
+        <td>
+          <input type="text" name="lastName" th:value="*{lastName}">
+        </td>
+        <td>
+          <input type="date" name="birthDate" th:value="*{birthDate}">
+        </td>
+        <td>
+          <button type="submit">Записать</button>
+        </td>
+      </form>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

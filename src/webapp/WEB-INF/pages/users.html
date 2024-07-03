@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Дата рождения</th>
+            <th>Действие</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.birthDate}"></td>
+            <td>
+                <form th:action="@{/users/{id}(id=${user.id})}" style="display: inline-block">
+                    <button type="submit">Редактировать</button>
+                </form>
+                <form th:action="@{/users/{id}(id=${user.id})}" th:method="delete" style="display: inline-block">
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <form th:action="@{/users}" method="post">
+                <td>
+                    # <input type="hidden" name="id">
+                </td>
+                <td>
+                    <input type="text" name="firstName">
+                </td>
+                <td>
+                    <input type="text" name="lastName">
+                </td>
+                <td>
+                    <input type="date" name="birthDate">
+                </td>
+                <td>
+                    <button type="submit">Добавить</button>
+                </td>
+            </form>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
